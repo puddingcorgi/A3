@@ -1,4 +1,3 @@
-// KeyPickup.cs
 using UnityEngine;
 
 public class KeyPickup : MonoBehaviour
@@ -11,15 +10,11 @@ public class KeyPickup : MonoBehaviour
     public Material blueMaterial;
 
     private Renderer rend;
-    private Collider keyCollider;
     private bool isActive = true;
-    private Vector3 startPosition;
 
     void Start()
     {
         rend = GetComponent<Renderer>();
-        keyCollider = GetComponent<Collider>();
-        startPosition = transform.position;
         SetupAppearance();
     }
 
@@ -27,11 +22,7 @@ public class KeyPickup : MonoBehaviour
     {
         if (isActive)
         {
-            // 钥匙浮动效果
-            float newY = startPosition.y + Mathf.Sin(Time.time * 2f) * 0.2f;
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-
-            // 钥匙旋转效果
+            // 旋转效果
             transform.Rotate(0, 50 * Time.deltaTime, 0);
         }
     }
@@ -59,29 +50,27 @@ public class KeyPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             KeyManager keyManager = other.GetComponent<KeyManager>();
-            if (keyManager != null && keyManager.currentKey == KeyManager.KeyColor.None)
+            if (keyManager != null)
             {
                 keyManager.PickupKey(keyColor);
-                PickupKey();
+                Pickup();
             }
         }
     }
 
-    void PickupKey()
+    void Pickup()
     {
         isActive = false;
         rend.enabled = false;
-        if (keyCollider != null)
-            keyCollider.enabled = false;
+        GetComponent<Collider>().enabled = false;
 
-        Invoke("RespawnKey", respawnTime);
+        Invoke("Respawn", respawnTime);
     }
 
-    void RespawnKey()
+    void Respawn()
     {
         isActive = true;
         rend.enabled = true;
-        if (keyCollider != null)
-            keyCollider.enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
 }
