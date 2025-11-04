@@ -33,7 +33,7 @@ public class ClickToMove : MonoBehaviour
         }
     }
 
-    
+
     public void SetSpeed(float speed)
     {
         agent.speed = speed;

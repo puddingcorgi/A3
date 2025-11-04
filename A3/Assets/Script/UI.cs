@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        playerMovement = FindObjectOfType<ClickToMove>();
+        playerMovement = Object.FindAnyObjectByType<ClickToMove>();
         if (speedSlider != null && playerMovement != null)
         {
             speedSlider.onValueChanged.AddListener(OnSpeedChanged);

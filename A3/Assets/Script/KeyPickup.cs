@@ -22,7 +22,7 @@ public class KeyPickup : MonoBehaviour
     {
         if (isActive)
         {
-            // Ðý×ªÐ§¹û
+            
             transform.Rotate(0, 50 * Time.deltaTime, 0);
         }
     }

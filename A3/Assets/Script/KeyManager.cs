@@ -11,7 +11,7 @@ public class KeyManager : MonoBehaviour
 
     void Start()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = Object.FindAnyObjectByType<UIManager>();
         UpdateUI();
     }
 
@@ -22,18 +22,6 @@ public class KeyManager : MonoBehaviour
             currentKey = keyColor;
             UpdateUI();
         }
-    }
-
-    public bool UseKey(KeyColor requiredColor)
-    {
-        if (currentKey == requiredColor)
-        {
-            currentKey = KeyColor.None;
-            doorsOpened++;
-            UpdateUI();
-            return true;
-        }
-        return false;
     }
 
     public int GetDoorsOpened()
@@ -48,5 +36,16 @@ public class KeyManager : MonoBehaviour
             uiManager.UpdateKeyDisplay(currentKey);
             uiManager.UpdateDoorsOpened(doorsOpened);
         }
+    }
+    public bool UseKey(KeyColor requiredColor)
+    {
+        if (currentKey == requiredColor)
+        {
+            currentKey = KeyColor.None;
+            doorsOpened++;
+            UpdateUI();
+            return true;
+        }
+        return false;
     }
 }
