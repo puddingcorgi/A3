@@ -18,15 +18,6 @@ public class KeyPickup : MonoBehaviour
         SetupAppearance();
     }
 
-    void Update()
-    {
-        if (isActive)
-        {
-            
-            transform.Rotate(0, 50 * Time.deltaTime, 0);
-        }
-    }
-
     void SetupAppearance()
     {
         switch (keyColor)

@@ -1,20 +1,21 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ClickToMove : MonoBehaviour
+public class Playermove : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Animator animator;
+    private float baseSpeed = 3f; 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        agent.speed = baseSpeed; 
     }
 
     void Update()
     {
-        
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -26,16 +27,17 @@ public class ClickToMove : MonoBehaviour
             }
         }
 
-        
         if (animator != null)
         {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
     }
 
-
-    public void SetSpeed(float speed)
+    public void SetSpeed(float speedMultiplier)
     {
-        agent.speed = speed;
+        agent.speed = baseSpeed * speedMultiplier;
     }
+
+
+
 }

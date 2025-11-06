@@ -1,4 +1,3 @@
-// UIManager.cs
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +7,20 @@ public class UIManager : MonoBehaviour
     public Text doorsOpenedText;
     public Slider speedSlider;
 
-    private ClickToMove playerMovement;
-
+    private Playermove playerMovement;
     void Start()
     {
-        playerMovement = Object.FindAnyObjectByType<ClickToMove>();
-        if (speedSlider != null && playerMovement != null)
+        playerMovement = Object.FindAnyObjectByType<Playermove>();
+        if (speedSlider != null )
         {
+            speedSlider.minValue = 0.5f;  
+            speedSlider.maxValue = 4.0f;  
+
+            speedSlider.value = 1.0f;
+
             speedSlider.onValueChanged.AddListener(OnSpeedChanged);
         }
+
         UpdateKeyDisplay(KeyManager.KeyColor.None);
         UpdateDoorsOpened(0);
     }
@@ -42,7 +46,7 @@ public class UIManager : MonoBehaviour
     {
         if (playerMovement != null)
         {
-            playerMovement.SetSpeed(value * 5f); 
+            playerMovement.SetSpeed(value);
         }
     }
 }

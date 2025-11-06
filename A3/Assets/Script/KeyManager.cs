@@ -1,4 +1,3 @@
-// KeyManager.cs
 using UnityEngine;
 
 public class KeyManager : MonoBehaviour
