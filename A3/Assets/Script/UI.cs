@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
         if (speedSlider != null )
         {
             speedSlider.minValue = 0.5f;  
-            speedSlider.maxValue = 4.0f;  
+            speedSlider.maxValue = 2.0f;  
 
             speedSlider.value = 1.0f;
 

@@ -5,7 +5,7 @@ public class Playermove : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Animator animator;
-    private float baseSpeed = 3f; 
+    private float baseSpeed = 2f; 
 
     void Start()
     {
